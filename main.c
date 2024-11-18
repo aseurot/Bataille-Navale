@@ -142,51 +142,7 @@ int WATER (int m_n1 [10][10], int m_n2 [10][10], int A, int B, int C, int D, int
 					}
 			}	else	{
 					for (i = B; i > D; i--)	{
-						if (m_n2 [i][A] == 0)	{
-							flag++ ;
-						} else {
-							flag--;
-						}
-					}
-					if (flag == E)	{
-						for (i = B; i > D; i--)	{
-							m_n2 [i][A] = E;
-						}
-						return 1;
-					} else {
-						return 0;
-					}
-				}
-			} else if ((A == C) && (D > B))	{		//CHECK UP
-				if (TURN == 0)	{
-					for (i = B; i < D; i++)	{
-						if (m_n1 [i][A] == 0)	{
-							flag++;
-						} else {
-							flag--;
-						}
-					}
-					if (flag == E)	{
-						for (i = B; i < D; i++)	{
-							m_n1 [i][A] = E;
-						}
-						return 1;
-					} else {
-						return 0;
-					}
-				}	else	{
-					for (i = B; i < D; i++)	{
-						if (m_n2 [i][A] == 0)	{
-							flag++;
-						} else {
-							flag--;
-						}
-					}
-					if (flag == E)	{
-						for (i = B; i < D; i++)	{
-							m_n2 [i][A] = E;
-						}
-						return 1;
+			
 					} else {
 						return 0;
 					}

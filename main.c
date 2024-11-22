@@ -22,18 +22,18 @@ typedef struct	{
 HANDLE wHnd;
 HANDLE rHnd;
 
-void SetColor(int ForgC);
-int MENU (void);
-void SHOW1 (int m_n1 [10][10], int m_n2 [10][10], int T);
-void SHOW2 (int m_n1 [10][10], int m_n2 [10][10], int T);
-void SHOW3 (int m_n1 [10][10], int m_n2 [10][10]);
-int WATER (int m_n1 [10][10], int m_n2 [10][10], int A, int B, int C, int D, int E, int TURN);
-int SHOT (int m_n1 [10][10], int m_n2 [10][10], int T, int i, int j);
-void FILL_PVP (int m_n1 [10][10], int m_n2 [10][10]);												//PVP --> Player Vs Player
-void FILL_PVC (int m_n1 [10][10], int m_n2 [10][10]);												//PVC --> Player Vs Cpu
-void SINK (int m_n1 [10][10], int m_n2 [10][10], int T);
-void GAME_PVP (int m_n1 [10][10],int m_n2 [10][10]);
-void GAME_PVC (int m_n1 [10][10],int m_n2 [10][10]);
+void SetColor(int ForgC);															//Definition des couleurs dans le jeu
+int MENU (void);																//Affichage du Menu
+void SHOW1 (int m_n1 [10][10], int m_n2 [10][10], int T);                                                                                       //Affichage de la grille de remplissage des navires
+void SHOW2 (int m_n1 [10][10], int m_n2 [10][10], int T);                                                                                       //Affichage de la grille de tir
+void SHOW3 (int m_n1 [10][10], int m_n2 [10][10]);												//Affichage de la grille fin de jeu
+int WATER (int m_n1 [10][10], int m_n2 [10][10], int A, int B, int C, int D, int E, int TURN);							//Remplissage de grille
+int SHOT (int m_n1 [10][10], int m_n2 [10][10], int T, int i, int j);										//Vérifie le tir éxécuter par le joueur
+void FILL_PVP (int m_n1 [10][10], int m_n2 [10][10]);												//Demande des coordonnées pour le remplissage des navires --> Mode : Joueur Vs Joueur
+void FILL_PVC (int m_n1 [10][10], int m_n2 [10][10]);												//Demande des coordonnées pour le remplissage des navires --> Mode : Joueur Vs IA
+void SINK (int m_n1 [10][10], int m_n2 [10][10], int T);											//Vérifie si le navire est coulé
+void GAME_PVP (int m_n1 [10][10],int m_n2 [10][10]);                                                                                            //Demande au joueurs de tirer --> Mode : Joueur Vs Joueur
+void GAME_PVC (int m_n1 [10][10],int m_n2 [10][10]);												//Demande au joueurs de tirer --> Mode : Joueur Vs IA
 
 int main (int argc, char* argv[])	{
 	int M_N1 [10][10], M_N2[10][10], turn = 0, flag = 0, M = 0, i, j;
@@ -235,7 +235,7 @@ int WATER (int m_n1 [10][10], int m_n2 [10][10], int A, int B, int C, int D, int
 						}
 					}
 					if (flag == E)	{
-						for (i = A; i < C; i++)	{
+						for (i = A; i <= C; i++)	{
 							m_n1 [B][i] = E;
 						}
 						return 1;
@@ -509,7 +509,7 @@ void FILL_PVP (int m_n1 [10][10], int m_n2 [10][10])	{
 			}	while (WATER (m_n1, m_n2, x1, y1, x2, y2, S[i].SIZE, fill) == 0);
 		}
 		system ("cls");
-		printf ("\t\tYour ships on the board are: \n\n");
+		printf ("\t\tVos navires sur la grille sont: \n\n");
 		SHOW1 (m_n1, m_n2, fill);
 		sleep (5);
 
@@ -713,8 +713,8 @@ void GAME_PVP (int m_n1 [10][10],int m_n2 [10][10])	{
 			system ("cls");
 			SHOW2 (m_n1, m_n2, TURN+1);
 			SetColor (WHITE);
-			printf ("Time to shoot!\n");
-			printf ("\tLine: ");
+			printf ("A ton tour de tirer!\n");
+			printf ("\tLigne: ");
 			scanf ("%d", &y);
 			printf ("\tColumn: ");
 			scanf ("%d", &x);
@@ -754,7 +754,7 @@ void GAME_PVP (int m_n1 [10][10],int m_n2 [10][10])	{
 			system ("cls");
 			SHOW2 (m_n1, m_n2, TURN+1);
 			SetColor (YELLOW);
-			printf ("\t\t\tCHECK YOUR SHOT\n\n");
+			printf ("\t\t\tVERIFIE TON TIR\n\n");
 			sleep (3);
 			TURN ++;
 		}
@@ -769,12 +769,12 @@ void GAME_PVP (int m_n1 [10][10],int m_n2 [10][10])	{
 	if (PLAYER == -1)	{
 		system ("cls");
 		SetColor (YELLOW);
-		printf ("\n\n\t\t Player 2 is the winner!\n");
+		printf ("\n\n\t\t Joueur 2 est le gagnant!\n");
 		sleep (3);
 	}	else if (PLAYER == -2)	{
 		system ("cls");
 		SetColor (YELLOW);
-		printf ("\n\n\t\t Player 1 is the winner!\n");
+		printf ("\n\n\t\t Joueur 1 est le gagnant!\n");
 		sleep (3);
 	}
 }
